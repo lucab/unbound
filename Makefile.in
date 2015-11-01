@@ -295,7 +295,7 @@ longtest:	tests
 lib:	libunbound.la unbound.h
 
 libunbound.la:	$(LIBUNBOUND_OBJ_LINK)
-	$(LINK_LIB) $(UBSYMS) -o $@ $(LIBUNBOUND_OBJ_LINK) -rpath $(libdir) -lssl $(LIBS)
+	$(LINK_LIB) $(UBSYMS) -o $@ $(LIBUNBOUND_OBJ_LINK) -rpath $(libdir) $(LIBS)
 
 unbound$(EXEEXT):	$(DAEMON_OBJ_LINK) libunbound.la
 	$(LINK) -o $@ $(DAEMON_OBJ_LINK) $(EXTRALINK) -lssl $(LIBS)
@@ -322,7 +322,7 @@ anchor-update$(EXEEXT):  $(ANCHORUPD_OBJ_LINK) libunbound.la
 	$(LINK) -o $@ $(ANCHORUPD_OBJ_LINK) -L. -L.libs -lunbound $(LIBS)
 
 unittest$(EXEEXT):	$(UNITTEST_OBJ_LINK)
-	$(LINK) -o $@ $(UNITTEST_OBJ_LINK) -lssl $(LIBS)
+	$(LINK) -o $@ $(UNITTEST_OBJ_LINK) $(LIBS)
 
 testbound$(EXEEXT):	$(TESTBOUND_OBJ_LINK)
 	$(LINK) -o $@ $(TESTBOUND_OBJ_LINK) -lssl $(LIBS)
