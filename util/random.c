@@ -78,7 +78,7 @@
  */
 #define MAX_VALUE 0x7fffffff
 
-#ifndef HAVE_NSS
+#if defined(HAVE_SSL)
 void
 ub_systemseed(unsigned int ATTR_UNUSED(seed))
 {
@@ -112,7 +112,7 @@ ub_random_max(struct ub_randstate* state, long int x)
 	return (long)arc4random_uniform((uint32_t)x);
 }
 
-#else
+#elif defined(HAVE_NSS)
 
 /* not much to remember for NSS since we use its pk11_random, placeholder */
 struct ub_randstate {
